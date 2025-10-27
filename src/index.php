@@ -60,7 +60,7 @@ $featuredProducts = $productModel->getFeatured(8);
                     <?php foreach ($featuredProducts as $product): ?>
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="<?= htmlspecialchars($product['image_url']) ?>" 
+                                <img src="assets<?= htmlspecialchars($product['image_url']) ?>" 
                                      alt="<?= htmlspecialchars($product['name']) ?>"
                                      onerror="this.src='assets/images/placeholder.jpg'">
                             </div>
