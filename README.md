@@ -1,1 +1,1 @@
-# minecraft-skins-website
+# Individual Website Assigmnet
