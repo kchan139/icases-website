@@ -104,6 +104,29 @@ INSERT INTO products (category_id, name, slug, description, price, iphone_model,
 (4, 'Rugged Case for iPhone 15 Pro', 'rugged-case-iphone-15-pro', 'Military-grade drop protection', 599000, 'iPhone 15 Pro', 'Black', 'Polycarbonate', '/images/products/rugged-15pro.jpg', 40),
 (5, 'Wallet Case for iPhone 15', 'wallet-case-iphone-15', 'Case with card slots and stand', 499000, 'iPhone 15', 'Navy', 'PU Leather', '/images/products/wallet-15.jpg', 35);
 
+-- Insert 20 more sample iPhone cases
+INSERT INTO products (category_id, name, slug, description, price, iphone_model, color, material, image_url, stock_quantity) VALUES
+(1, 'Clear Case for iPhone 15 Pro Max', 'clear-case-iphone-15-pro-max', 'Crystal clear case for the 15 Pro Max', 299000, 'iPhone 15 Pro Max', 'Clear', 'TPU', '/images/products/clear-15promax.jpg', 50),
+(1, 'Clear Case for iPhone 14', 'clear-case-iphone-14', 'Basic transparent case for iPhone 14', 229000, 'iPhone 14', 'Clear', 'Polycarbonate', '/images/products/clear-14.jpg', 70),
+(1, 'Clear Case for iPhone 14 Plus', 'clear-case-iphone-14-plus', 'Thin clear case with MagSafe support', 319000, 'iPhone 14 Plus', 'Clear', 'TPU', '/images/products/clear-14plus.jpg', 40),
+(2, 'Leather Case for iPhone 15', 'leather-case-iphone-15', 'Premium tan leather case', 849000, 'iPhone 15', 'Tan', 'Leather', '/images/products/leather-15-tan.jpg', 25),
+(2, 'Leather Case for iPhone 15 Plus', 'leather-case-iphone-15-plus', 'Elegant case in forest green leather', 849000, 'iPhone 15 Plus', 'Forest Green', 'Leather', '/images/products/leather-15plus-green.jpg', 22),
+(2, 'Leather Case for iPhone 14 Pro Max', 'leather-case-iphone-14-pro-max', 'Classic leather protection', 799000, 'iPhone 14 Pro Max', 'Red', 'Leather', '/images/products/leather-14promax-red.jpg', 18),
+(3, 'Silicone Case for iPhone 15 Pro', 'silicone-case-iphone-15-pro', 'Soft-touch silicone case with microfiber lining', 349000, 'iPhone 15 Pro', 'Blue', 'Silicone', '/images/products/silicone-15pro-blue.jpg', 80),
+(3, 'Silicone Case for iPhone 15 Pro Max', 'silicone-case-iphone-15-pro-max', 'White silicone case', 349000, 'iPhone 15 Pro Max', 'White', 'Silicone', '/images/products/silicone-15promax-white.jpg', 75),
+(3, 'Silicone Case for iPhone 14 Plus', 'silicone-case-iphone-14-plus', 'Bright yellow silicone case', 329000, 'iPhone 14 Plus', 'Yellow', 'Silicone', '/images/products/silicone-14plus-yellow.jpg', 50),
+(4, 'Rugged Case for iPhone 15 Pro Max', 'rugged-case-iphone-15-pro-max', 'Heavy-duty protection with kickstand', 649000, 'iPhone 15 Pro Max', 'Graphite', 'Polycarbonate/Rubber', '/images/products/rugged-15promax.jpg', 35),
+(4, 'Rugged Case for iPhone 14', 'rugged-case-iphone-14', 'Dual-layer shockproof case', 549000, 'iPhone 14', 'Black', 'TPU/Polycarbonate', '/images/products/rugged-14.jpg', 40),
+(4, 'Rugged Case for iPhone 15 Plus', 'rugged-case-iphone-15-plus', 'Slim rugged case in olive green', 599000, 'iPhone 15 Plus', 'Olive Green', 'TPU', '/images/products/rugged-15plus-olive.jpg', 42),
+(5, 'Wallet Case for iPhone 15 Pro', 'wallet-case-iphone-15-pro', 'Black leather wallet case, holds 3 cards', 529000, 'iPhone 15 Pro', 'Black', 'PU Leather', '/images/products/wallet-15pro.jpg', 30),
+(5, 'Wallet Case for iPhone 14 Pro', 'wallet-case-iphone-14-pro', 'Brown genuine leather folio case', 699000, 'iPhone 14 Pro', 'Brown', 'Genuine Leather', '/images/products/wallet-14pro-brown.jpg', 28),
+(5, 'Wallet Case for iPhone 15 Pro Max', 'wallet-case-iphone-15-pro-max', 'Blue folio case with magnetic clasp', 549000, 'iPhone 15 Pro Max', 'Blue', 'PU Leather', '/images/products/wallet-15promax-blue.jpg', 33),
+(1, 'Clear Case for iPhone 13', 'clear-case-iphone-13', 'Basic clear case for iPhone 13', 199000, 'iPhone 13', 'Clear', 'TPU', '/images/products/clear-13.jpg', 100),
+(3, 'Silicone Case for iPhone 13 Pro', 'silicone-case-iphone-13-pro', 'Red silicone case for iPhone 13 Pro', 299000, 'iPhone 13 Pro', 'Red', 'Silicone', '/images/products/silicone-13pro-red.jpg', 60),
+(4, 'Rugged Case for iPhone 13 Pro Max', 'rugged-case-iphone-13-pro-max', 'Camo pattern heavy-duty case', 499000, 'iPhone 13 Pro Max', 'Camo', 'Polycarbonate', '/images/products/rugged-13promax-camo.jpg', 20),
+(2, 'Leather Case for iPhone 13 Mini', 'leather-case-iphone-13-mini', 'Saddle brown leather case for 13 mini', 749000, 'iPhone 13 Mini', 'Saddle Brown', 'Leather', '/images/products/leather-13mini.jpg', 15),
+(5, 'Wallet Case for iPhone 14', 'wallet-case-iphone-14', 'Simple black wallet case with 2 card slots', 449000, 'iPhone 14', 'Black', 'PU Leather', '/images/products/wallet-14-black.jpg', 38);
+
 -- Insert sample availability
 INSERT INTO product_store_availability (product_id, store_id, quantity) VALUES
 (1, 1, 20), (1, 2, 15), (1, 3, 15),
