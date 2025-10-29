@@ -65,7 +65,28 @@ nav a {
     transition: color 0.2s;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
+    color: var(--text-primary);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: var(--bg-secondary);
+    padding: 1rem 0;
+    font-size: 0.875rem;
+}
+
+.breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--text-primary);
+}
+
+.breadcrumb span {
     color: var(--text-primary);
 }
 
@@ -223,6 +244,15 @@ footer p {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 1.5rem;
     }
+
+    .products-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .filter-group select {
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -248,4 +278,78 @@ footer p {
     .product-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Products Page */
+.products-section {
+    padding: 3rem 0 6rem;
+}
+
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.products-header h1 {
+    font-size: 2rem;
+}
+
+.products-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.filter-group select {
+    padding: 0.625rem 1rem;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.no-products {
+    text-align: center;
+    padding: 4rem 0;
+    color: var(--text-secondary);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+}
+
+.page-link {
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-card);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+}
+
+.page-link:hover {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.page-link.active {
+    background-color: var(--accent);
+    color: var(--text-primary);
+    border-color: var(--accent);
 }

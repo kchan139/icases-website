@@ -11,12 +11,12 @@ if not DOCKER_CMD:
     sys.exit(1)
 
 try:
-    print("\nResetting php service...\n")
+    print("\nRestarting php service...\n")
     subprocess.run(
         [DOCKER_CMD, "compose", "up", "-d", "--build", "--force-recreate"] + CONTAINERS,
         check=True,
     )
-    print("\n✓ php service reset complete!")
+    print("\n✓ php service restart complete!")
 except subprocess.CalledProcessError as e:
-    print("Failed to reset php service:", e)
+    print("Failed to restart php service:", e)
     sys.exit(1)
