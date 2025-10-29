@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.2-apache-bookworm
 
 RUN apt-get update && apt-get install -y \
     libpng-dev \
@@ -19,7 +19,7 @@ RUN a2enmod rewrite
 
 WORKDIR /var/www/html
 
-COPY config/apache.conf /etc/apache2/sites-available/000-default.conf
+COPY src/configs/apache.conf /etc/apache2/sites-available/000-default.conf
 
 RUN chown -R www-data:www-data /var/www/html
 RUN chmod -R 755 /var/www/html

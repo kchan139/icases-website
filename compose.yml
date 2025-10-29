@@ -6,7 +6,7 @@ services:
       - "127.0.0.1:8080:80"
     volumes:
       - ./src:/var/www/html
-      - ./config/php.ini:/usr/local/etc/php/php.ini
+      - ./src/configs/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - mysql
     networks:

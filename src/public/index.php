@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'configs/database.php';
-require_once 'models/Product.php';
+require_once __DIR__ . '/../configs/database.php';
+require_once __DIR__ . '/../app/models/Product.php';
 
 $db = new Database();
 $conn = $db->getConnection();
@@ -14,12 +14,14 @@ $path = trim($path, '/');
 $parts = explode('/', $path);
 $page = $parts[0] ?: 'home';
 
+$VIEWS = __DIR__ . '/../app/views';
+
 switch ($page) {
     case 'home':
     case '':
         $productModel = new Product($conn);
         $featuredProducts = $productModel->getFeatured(8);
-        $viewFile = 'views/home.php';
+        $viewFile = $VIEWS . '/home.php';
         break;
 
     case 'products':
@@ -38,29 +40,32 @@ switch ($page) {
         $categories = $productModel->getCategories();
         $iphoneModels = $productModel->getIphoneModels();
         
-        $viewFile = 'views/products.php';
+        $viewFile = $VIEWS . '/products.php';
         break;
 
     case 'login':
         $viewFile = 'views/login.php';
+        $viewFile = $VIEWS . '/login.php';
         break;
 
     case 'logout':
         $viewFile = 'views/logout.php';
+        $viewFile = $VIEWS . '/logout.php';
         break;
 
     case 'search':
         $viewFile = 'views/search.php';
+        $viewFile = $VIEWS . '/search.php';
         break;
 
     case 'stores':
-        $viewFile = 'views/stores.php';
+        $viewFile = $VIEWS . '/stores.php';
         break;
 
     default:
         http_response_code(404);
-        $viewFile = 'views/404.php';
+        $viewFile = $VIEWS . '/404.php';
         break;
 }
 
-require_once 'views/layout.php';
+require_once __DIR__ . '/../app/views/layout.php';

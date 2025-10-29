@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-    <?php include 'views/components/header.php'; ?>
+    <?php include __DIR__ . '/components/header.php'; ?>
 
     <main>
         <?php
@@ -19,6 +19,6 @@
         ?>
     </main>
 
-    <?php include 'views/components/footer.php'; ?>
+    <?php include __DIR__ . '/components/footer.php'; ?>
 </body>
 </html>
