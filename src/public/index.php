@@ -54,7 +54,29 @@ switch ($page) {
         break;
 
     case 'stores':
+        $query = "SELECT * FROM stores WHERE is_active = 1 ORDER BY city, name";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $stores = $stmt->fetchAll();
         $viewFile = $VIEWS . '/stores.php';
+        break;
+
+    case 'product':
+        if (isset($parts[1])) {
+            $productModel = new Product($conn);
+            $product = $productModel->getBySlug($parts[1]);
+        
+            if ($product) {
+                $stores = $productModel->getStoreAvailability($product['id']);
+                $viewFile = $VIEWS . '/product-detail.php';
+            } else {
+                http_response_code(404);
+                $viewFile = $VIEWS . '/404.php';
+            }
+        } else {
+            http_response_code(404);
+            $viewFile = $VIEWS . '/404.php';
+        }
         break;
 
     default:
