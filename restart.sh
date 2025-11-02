@@ -3,6 +3,7 @@ set -e
 
 cd "$(dirname "$0")"
 
+echo
 echo "--- RESTARTING SERVICES ---"
 echo
 
@@ -16,8 +17,19 @@ else
     exit 1
 fi
 
-$TOOL compose down -v
-$TOOL compose up -d
+if ! $TOOL compose down -v || ! $TOOL compose up -d; then
+    echo
+    echo " ✘ ERROR: Service restart failed."
+    echo
+
+    echo "Running containers:"
+    $TOOL ps -a | head -n1; $TOOL ps | grep ip_cases || true
+    echo
+
+    echo "Failed containers:"
+    $TOOL ps -a | head -n1; $TOOL ps -a | grep -iE "exited|dead|unhealthy" | grep ip_cases
+    exit 1
+fi
 
 sleep 0.25
 
@@ -28,5 +40,4 @@ echo "---"
 
 sleep 0.25
 
-# list running containers for this project
-$TOOL ps | head -n 1; $TOOL ps | grep ip_cases;
+$TOOL ps | head -n1; $TOOL ps | grep ip_cases
