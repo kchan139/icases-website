@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS stores (
     phone VARCHAR(20) NULL,
     latitude DECIMAL(10, 8) NULL,
     longitude DECIMAL(11, 8) NULL,
+    image_url VARCHAR(255) NULL,
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_city (city)
@@ -88,10 +89,10 @@ INSERT INTO categories (name, slug, description) VALUES
 ('Wallet Cases', 'wallet-cases', 'Cases with card holders');
 
 -- Insert sample stores
-INSERT INTO stores (name, address, city, phone, latitude, longitude) VALUES
-('Ho Chi Minh Store', '268 Ly Thuong Kiet, District 10', 'Ho Chi Minh City', '028-1234-5678', 10.7721556, 106.6576888),
-('District 1 Store', '123 Le Loi, District 1', 'Ho Chi Minh City', '028-9876-5432', 10.7756580, 106.7004710),
-('Hanoi Store', '45 Tran Duy Hung, Cau Giay', 'Hanoi', '024-1111-2222', 21.0285978, 105.7825405);
+INSERT INTO stores (name, address, city, phone, latitude, longitude, image_url) VALUES
+('Ho Chi Minh Store', '268 Ly Thuong Kiet, District 10', 'Ho Chi Minh City', '028-1234-5678', 10.7721556, 106.6576888, '/images/stores/hcm-store.jpg'),
+('District 1 Store', '123 Le Loi, District 1', 'Ho Chi Minh City', '028-9876-5432', 10.7756580, 106.7004710, '/images/stores/district1-store.jpg'),
+('Hanoi Store', '45 Tran Duy Hung, Cau Giay', 'Hanoi', '024-1111-2222', 21.0285978, 105.7825405, '/images/stores/hanoi-store.jpg');
 
 -- Insert sample iPhone cases
 INSERT INTO products (category_id, name, slug, description, price, iphone_model, color, material, image_url, stock_quantity) VALUES
@@ -152,3 +153,8 @@ INSERT INTO product_store_availability (product_id, store_id, quantity) VALUES
 (16, 3, 0), (17, 3, 20), (18, 3, 6), (19, 3, 5), (20, 3, 0),
 (21, 3, 15), (22, 3, 8), (23, 3, 14), (24, 3, 0), (25, 3, 12),
 (26, 3, 30), (27, 3, 0), (28, 3, 2);
+
+-- Insert sample user
+-- Password: `password`
+INSERT INTO users (email, password, full_name) VALUES
+('user@user.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Test User');
