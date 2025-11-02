@@ -4,17 +4,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #141414;
-    --bg-card: #1a1a1a;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
-    --border: #2a2a2a;
-}
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
     background-color: var(--bg-primary);
@@ -114,7 +103,7 @@ nav a.active {
     display: inline-block;
     padding: 0.875rem 2rem;
     background-color: var(--accent);
-    color: var(--text-primary);
+    color: #000000;
     text-decoration: none;
     border-radius: 6px;
     font-weight: 500;
@@ -303,6 +292,86 @@ footer p {
     gap: 1rem;
 }
 
+.search-bar-wrapper {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+#productSearch {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+#productSearch:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.search-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    z-index: 10;
+}
+
+.search-dropdown.active {
+    display: block;
+}
+
+.search-dropdown-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.2s;
+}
+
+.search-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.search-dropdown-item:hover {
+    background-color: var(--bg-secondary);
+}
+
+.search-dropdown-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.search-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.search-model {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.search-price {
+    font-size: 0.875rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
 .filter-group select {
     padding: 0.625rem 1rem;
     background-color: var(--bg-card);
@@ -352,4 +421,106 @@ footer p {
     background-color: var(--accent);
     color: var(--text-primary);
     border-color: var(--accent);
+}
+
+/* Search */
+.search-section {
+    padding: 3rem 0 6rem;
+}
+
+.search-section h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.search-results {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    z-index: 10;
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-result-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.2s;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: var(--bg-secondary);
+}
+
+.search-result-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.search-result-info {
+    flex: 1;
+}
+
+.search-result-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.search-result-model {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.search-result-price {
+    font-size: 0.875rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.no-results {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-secondary);
 }

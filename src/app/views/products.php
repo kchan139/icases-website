@@ -9,6 +9,15 @@
 
 <section class="products-section">
     <div class="container">
+        <div class="search-bar-wrapper">
+            <input 
+                type="text" 
+                id="productSearch" 
+                placeholder="Search products..." 
+                autocomplete="off"
+            >
+            <div id="searchDropdown" class="search-dropdown"></div>
+        </div>
         <div class="products-header">
             <h1>All Products</h1>
             <div class="products-controls">
@@ -87,6 +96,64 @@
             <?php endif; ?>
         <?php endif; ?>
     </div>
+    <script>
+        let searchTimeout;
+        const searchInput = document.getElementById('productSearch');
+        const searchDropdown = document.getElementById('searchDropdown');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim();
+            clearTimeout(searchTimeout);
+    
+            if (query.length < 2) {
+                searchDropdown.innerHTML = '';
+                searchDropdown.classList.remove('active');
+                return;
+            }
+    
+            searchTimeout = setTimeout(() => {
+                fetch('/api/search.php?q=' + encodeURIComponent(query))
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.products && data.products.length > 0) {
+                            const html = data.products.slice(0, 5).map(product => `
+                                <a href="/product/${product.slug}" class="search-dropdown-item">
+                                    <img src="/assets${product.image_url}" 
+                                         alt="${escapeHtml(product.name)}"
+                                         onerror="this.src='/assets/images/placeholder.jpg'">
+                                    <div>
+                                        <div class="search-name">${escapeHtml(product.name)}</div>
+                                        <div class="search-model">${escapeHtml(product.iphone_model)}</div>
+                                        <div class="search-price">${formatPrice(product.price)}₫</div>
+                                    </div>
+                                </a>
+                            `).join('');
+                            searchDropdown.innerHTML = html;
+                            searchDropdown.classList.add('active');
+                        } else {
+                            searchDropdown.innerHTML = '<div class="no-results">No products found</div>';
+                            searchDropdown.classList.add('active');
+                        }
+                    });
+            }, 300);
+        });
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatPrice(price) {
+            return parseFloat(price).toLocaleString('vi-VN');
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                searchDropdown.classList.remove('active');
+            }
+        });
+    </script>
 </section>
 
 <script>

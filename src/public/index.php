@@ -53,11 +53,6 @@ switch ($page) {
         $viewFile = $VIEWS . '/logout.php';
         break;
 
-    case 'search':
-        $viewFile = 'views/search.php';
-        $viewFile = $VIEWS . '/search.php';
-        break;
-
     case 'stores':
         $viewFile = $VIEWS . '/stores.php';
         break;

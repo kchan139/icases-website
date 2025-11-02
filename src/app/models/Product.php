@@ -96,4 +96,54 @@ class Product {
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function search($query, $limit = 10) {
+        $searchTerm = "%{$query}%";
+        
+        $sql = "SELECT p.*, c.name as category_name 
+                FROM " . $this->table . " p
+                LEFT JOIN categories c ON p.category_id = c.id
+                WHERE p.is_active = 1 
+                AND (p.name LIKE :search 
+                     OR p.iphone_model LIKE :search
+                     OR p.description LIKE :search
+                     OR c.name LIKE :search)
+                ORDER BY p.name ASC
+                LIMIT :limit";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':search', $searchTerm);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetchAll();
+    }
+
+    public function getBySlug($slug) {
+        $query = "SELECT p.*, c.name as category_name, c.slug as category_slug
+                  FROM " . $this->table . " p
+                  LEFT JOIN categories c ON p.category_id = c.id
+                  WHERE p.slug = :slug AND p.is_active = 1
+                  LIMIT 1";
+    
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':slug', $slug);
+        $stmt->execute();
+    
+        return $stmt->fetch();
+    }
+
+    public function getStoreAvailability($productId) {
+        $query = "SELECT s.*, psa.quantity
+                  FROM stores s
+                  INNER JOIN product_store_availability psa ON s.id = psa.store_id
+                  WHERE psa.product_id = :product_id AND s.is_active = 1
+                  ORDER BY s.city, s.name";
+    
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':product_id', $productId, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        return $stmt->fetchAll();
+    }
 }

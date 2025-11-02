@@ -19,10 +19,14 @@ fi
 $TOOL compose down -v
 $TOOL compose up -d
 
+sleep 0.25
+
 echo
 echo " ✔ RESTART COMPLETE"
 echo
 echo "---"
+
+sleep 0.25
 
 # list running containers for this project
 $TOOL ps | head -n 1; $TOOL ps | grep ip_cases;
