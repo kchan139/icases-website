@@ -6,6 +6,7 @@
     <meta name="description" content="Premium iPhone cases - Clear, Leather, Silicone, Rugged, and Wallet cases for all iPhone models">
     <meta name="keywords" content="iPhone cases, phone cases, iPhone 15 cases, protective cases">
     <title>iPhone Cases - Premium Protection for Your Device</title>
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="stylesheet" href="/assets/css/theme.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
