@@ -10,16 +10,14 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-    <?php include __DIR__ . '/components/header.php'; ?>
+    <?php include __DIR__ . "/components/header.php"; ?>
 
     <main>
-        <?php
-        if (isset($viewFile)) {
+        <?php if (isset($viewFile)) {
             require_once $viewFile;
-        }
-        ?>
+        } ?>
     </main>
 
-    <?php include __DIR__ . '/components/footer.php'; ?>
+    <?php include __DIR__ . "/components/footer.php"; ?>
 </body>
 </html>

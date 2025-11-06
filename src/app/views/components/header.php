@@ -9,7 +9,10 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/products">Products</a></li>
                     <li><a href="/stores">Stores</a></li>
-                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <?php if (isset($_SESSION["user_id"])): ?>
+                        <li><span style="color: var(--text-secondary)">Hi, <?= htmlspecialchars(
+                            explode(" ", $_SESSION["user_name"])[0],
+                        ) ?></span></li>
                         <li><a href="/logout">Logout</a></li>
                     <?php else: ?>
                         <li><a href="/login">Login</a></li>
