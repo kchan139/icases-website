@@ -154,4 +154,4 @@ INSERT INTO product_store_availability (product_id, store_id, quantity) VALUES
 -- Insert sample user
 -- Password: `password`
 INSERT INTO users (email, password, full_name) VALUES
-('user@user.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Test User');
+('user@user.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'NguyenSybau 67');

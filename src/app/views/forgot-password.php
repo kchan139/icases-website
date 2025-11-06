@@ -19,7 +19,13 @@
             <?php endif; ?>
 
             <?php if (isset($success) && $success): ?>
-                <div class="alert alert-success"><?= $success ?></div>
+                <div class="alert alert-success">
+                    Password reset link generated successfully!<br>
+                    <a href="<?= htmlspecialchars($resetLink ?? "") ?>"
+                       style="color: #6ee7b7; text-decoration: underline; word-break: break-all;">
+                        Click here to reset your password
+                    </a>
+                </div>
             <?php endif; ?>
 
             <form method="POST" action="/forgot-password">

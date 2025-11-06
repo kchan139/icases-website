@@ -74,6 +74,7 @@ class AuthController
     {
         $error = "";
         $success = "";
+        $resetLink = "";
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $email = $_POST["email"] ?? "";
@@ -86,14 +87,18 @@ class AuthController
                 $token = $this->userModel->createResetToken($email);
                 if ($token) {
                     $resetLink = "http://{$_SERVER["HTTP_HOST"]}/reset-password?token={$token}";
-                    $success = "Password reset link: <a href='{$resetLink}'>{$resetLink}</a>";
+                    $success = "Password reset link generated successfully!";
                 } else {
                     $error = "Failed to generate reset token";
                 }
             }
         }
 
-        return ["error" => $error, "success" => $success];
+        return [
+            "error" => $error,
+            "success" => $success,
+            "resetLink" => $resetLink,
+        ];
     }
 
     public function resetPassword($token)
@@ -122,7 +127,7 @@ class AuthController
             } else {
                 if ($this->userModel->resetPassword($token, $password)) {
                     $success =
-                        'Password reset successful! <a href="/login">Login here</a>';
+                        'Password reset successful! <a href="/login" style="color: #ffffff; text-decoration: underline;">Login here</a>';
                 } else {
                     $error = "Failed to reset password";
                 }
