@@ -24,15 +24,8 @@
 
             <div class="product-detail-info">
                 <h1><?= htmlspecialchars($product["name"]) ?></h1>
-                <p class="product-detail-model"><?= htmlspecialchars(
-                    $product["iphone_model"],
-                ) ?></p>
-                <p class="product-detail-price"><?= number_format(
-                    $product["price"],
-                    0,
-                    ",",
-                    ".",
-                ) ?>₫</p>
+                <p class="product-detail-model"><?= htmlspecialchars($product["iphone_model"]) ?></p>
+                <p class="product-detail-price"><?= number_format($product["price"], 0, ",", ".") ?>₫</p>
 
                 <?php if ($product["description"]): ?>
                     <div class="product-description">
@@ -45,19 +38,22 @@
                     <h3>Specifications</h3>
                     <ul>
                         <?php if ($product["material"]): ?>
-                            <li><strong>Material:</strong> <?= htmlspecialchars(
-                                $product["material"],
-                            ) ?></li>
+                            <li><strong>Material:</strong> <?= htmlspecialchars($product["material"]) ?></li>
                         <?php endif; ?>
                         <?php if ($product["color"]): ?>
-                            <li><strong>Color:</strong> <?= htmlspecialchars(
-                                $product["color"],
-                            ) ?></li>
+                            <li><strong>Color:</strong> <?= htmlspecialchars($product["color"]) ?></li>
                         <?php endif; ?>
-                        <li><strong>Model:</strong> <?= htmlspecialchars(
-                            $product["iphone_model"],
-                        ) ?></li>
+                        <li><strong>Model:</strong> <?= htmlspecialchars($product["iphone_model"]) ?></li>
                     </ul>
+                </div>
+
+                <div class="product-actions">
+                    <form method="POST" action="/cart/add" style="display: inline;">
+                        <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                        <input type="hidden" name="redirect" value="<?= $_SERVER['REQUEST_URI'] ?>">
+                        <button type="submit" name="action" value="add" class="btn btn-secondary">Add to Cart</button>
+                        <button type="submit" name="action" value="buy" class="btn">Buy Now</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@
                     $token ?? "",
                 ) ?>">
                     <div class="form-group">
-                        <label for="password">New Password (min 6 characters)</label>
+                        <label for="password">New Password (min 8 chars: uppercase, lowercase, number, special char)</label>
                         <input type="password" id="password" name="password" required minlength="6">
                     </div>
 

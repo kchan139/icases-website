@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Password (min 6 characters)</label>
+                    <label for="password">Password (8 chars: uppercase, lowercase, number, special character)</label>
                     <input type="password" id="password" name="password" required minlength="6">
                 </div>
 

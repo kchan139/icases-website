@@ -9,8 +9,14 @@ class User
         $this->conn = $db;
     }
 
+    public function getConnection()
+    {
+        return $this->conn;
+    }
+
     public function register($email, $password, $fullName)
     {
+        # for php 8.2, PASSWORD_DEFAULT algorithm is bcrypt - cost 12
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $query = "INSERT INTO {$this->table} (email, password, full_name)
@@ -76,11 +82,17 @@ class User
         $stmt->bindParam(":token", $token);
         $stmt->execute();
 
+        $user = $stmt->fetch();
+        if ($user && hash_equals($user['reset_token'], $token)) {
+            return $user;
+        }
+
         return $stmt->fetch();
     }
 
     public function resetPassword($token, $newPassword)
     {
+        # for php 8.2, PASSWORD_DEFAULT algorithm is bcrypt - cost 12
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
         $query = "UPDATE {$this->table}

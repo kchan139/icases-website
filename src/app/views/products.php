@@ -117,8 +117,8 @@
                     .then(data => {
                         if (data.products && data.products.length > 0) {
                             const html = data.products.slice(0, 5).map(product => `
-                                <a href="/product/${product.slug}" class="search-dropdown-item">
-                                    <img src="/assets${product.image_url}" 
+                                <a href="/product/${encodeURIComponent(product.slug)}" class="search-dropdown-item">
+                                    <img src="/assets${escapeHtml(product.image_url)}" 
                                          alt="${escapeHtml(product.name)}"
                                          onerror="this.src='/assets/images/placeholder.jpg'">
                                     <div>

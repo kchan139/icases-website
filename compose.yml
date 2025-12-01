@@ -46,8 +46,8 @@ services:
           "root",
           "-p${MYSQL_ROOT_PASSWORD}",
         ]
-      interval: 5s
-      timeout: 3s
+      interval: 3s
+      timeout: 1s
       retries: 10
     networks:
       - network_ip_cases

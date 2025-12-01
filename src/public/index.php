@@ -1,10 +1,15 @@
 <?php
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_samesite', 'Strict');
+ini_set('session.use_strict_mode', 1);
 session_start();
+
 require_once __DIR__ . "/../configs/database.php";
 require_once __DIR__ . "/../app/models/Product.php";
 
 $db = new Database();
 $conn = $db->getConnection();
+$GLOBALS['db_conn'] = $conn;
 
 // Get the requested path
 $path = $_GET["path"] ?? "";
@@ -106,6 +111,83 @@ switch ($page) {
         } else {
             http_response_code(404);
             $viewFile = "$VIEWS/404.php";
+        }
+        break;
+
+    case "cart":
+        require_once __DIR__ . "/../app/models/Cart.php";
+        $cartModel = new Cart($conn);
+        
+        if (isset($parts[1])) {
+            switch ($parts[1]) {
+                case "add":
+                    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                        $productId = $_POST['product_id'] ?? 0;
+                        $action = $_POST['action'] ?? 'add';
+                        $redirect = $_POST['redirect'] ?? '/cart';
+                        
+                        if ($productId) {
+                            $cartModel->addItem($productId, 1);
+                            
+                            if ($action === 'buy') {
+                                header("Location: /checkout");
+                            } else {
+                                header("Location: $redirect");
+                            }
+                            exit();
+                        }
+                    }
+                    break;
+                    
+                case "update":
+                    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                        $cartItemId = $_POST['cart_item_id'] ?? 0;
+                        $quantity = $_POST['quantity'] ?? 1;
+                        $cartModel->updateQuantity($cartItemId, $quantity);
+                    }
+                    header("Location: /cart");
+                    exit();
+                    
+                case "remove":
+                    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                        $cartItemId = $_POST['cart_item_id'] ?? 0;
+                        $cartModel->removeItem($cartItemId);
+                    }
+                    header("Location: /cart");
+                    exit();
+            }
+        }
+        
+        $cartItems = $cartModel->getItems();
+        $viewFile = "$VIEWS/cart.php";
+        break;
+
+    case "checkout":
+        require_once __DIR__ . "/../app/models/Cart.php";
+        $cartModel = new Cart($conn);
+        $cartItems = $cartModel->getItems();
+        
+        if (empty($cartItems)) {
+            header("Location: /cart");
+            exit();
+        }
+        
+        if (isset($parts[1]) && $parts[1] === "process") {
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                // Here you would normally process the order
+                // For now, just clear cart and show success
+                $cartModel->clearCart();
+                header("Location: /order/success");
+                exit();
+            }
+        }
+        
+        $viewFile = "$VIEWS/checkout.php";
+        break;
+
+    case "order":
+        if (isset($parts[1]) && $parts[1] === "success") {
+            $viewFile = "$VIEWS/order-success.php";
         }
         break;
 

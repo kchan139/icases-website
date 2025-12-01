@@ -9,6 +9,17 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/products">Products</a></li>
                     <li><a href="/stores">Stores</a></li>
+                    <li><a href="/cart" class="cart-link">
+                        Cart
+                        <?php
+                        require_once __DIR__ . '/../../models/Cart.php';
+                        $cartModel = new Cart($GLOBALS['db_conn']);
+                        $cartCount = $cartModel->getCount();
+                        if ($cartCount > 0):
+                        ?>
+                            <span class="cart-count"><?= $cartCount ?></span>
+                        <?php endif; ?>
+                    </a></li>
                     <?php if (isset($_SESSION["user_id"])): ?>
                         <li><span style="color: var(--text-secondary)">Hi, <?= htmlspecialchars(
                             explode(" ", $_SESSION["user_name"])[0],

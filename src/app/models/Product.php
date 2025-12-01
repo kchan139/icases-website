@@ -132,7 +132,7 @@ class Product
                 LIMIT :limit";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":search", $searchTerm);
+        $stmt->bindParam(":search", $searchTerm, PDO::PARAM_STR);
         $stmt->bindParam(":limit", $limit, PDO::PARAM_INT);
         $stmt->execute();
 
