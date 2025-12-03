@@ -6,11 +6,10 @@ Individual Web Programming Project - HCMUT
 
 - **Backend:** PHP 8.2, MySQL 8.0
 - **Frontend:** Vanilla HTML/CSS/JS
-- **Container:** Docker Compose (PHP-Apache, MySQL, phpMyAdmin)
+- **Environment:** Docker Compose (PHP-Apache, MySQL, phpMyAdmin)
 
 ## Prerequisites
-
-Requires Docker/Podman with Compose.
+- Docker/Podman with Compose.
 
 ## Quick Start
 
@@ -36,19 +35,26 @@ docker compose up -d
 ## Project Structure
 
 ```
-src
-├── app
-│   ├── controllers/
-│   ├── models/
-│   └── views/
-├── configs
-│   ├── apache.conf
-│   ├── database.php
-│   └── php.ini
-└── public
-    ├── api/
-    ├── assets/
-    └── index.php
+icases-website
+├── database
+│   └── init.sql
+├── src
+│   ├── app
+│   │   ├── controllers
+│   │   ├── models
+│   │   └── views
+│   │       ├── components
+│   │       │   ├── footer.php
+│   │       │   └── header.php
+│   │       └── *.php
+│   ├── configs
+│   └── public
+│       ├── assets
+│       ├── .htaccess
+│       └── index.php
+├── .env
+├── compose.yml
+└── Dockerfile
 ```
 
 ## Features
@@ -59,6 +65,9 @@ src
 - Category navigation with breadcrumbs
 - Store availability with Google Maps links
 - User authentication (register, login, password reset)
+- Shopping cart system with add/update/remove actions
+- Complete checkout flow with order confirmation
+- Security hardening: login rate limiting, enhanced password validation, session security (HttpOnly, SameSite, strict mode), Apache security headers
 - SEO: semantic HTML, meta tags, friendly URLs
 
 ## Development
